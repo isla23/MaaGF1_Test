@@ -78,6 +78,13 @@
 		"action": "Click",
 		"target": [207, 51, 12, 3],
 		"post_delay": 2000,
+		"next": [
+			"结束任务"
+		]
+	},
+	"结束任务": {
+		"recognition": "DirectHit",
+		"action": "StopTask",
 		"next": []
 	},
 	"choosehero_z_1": {
@@ -120,7 +127,7 @@
 		"target": [1090, 655, 1, 1],
 		"timeout": 999999,
 		"rate_limit": 7000,
-		"post_delay": 6000,
+		"post_delay": 15000,
 		"next": [
 			"ocr_zibao",
 			"[JumpBack]saibeisi_"
@@ -155,7 +162,7 @@
 		"action": "Click",
 		"target": "ocr_zibao",
 		"repeat_delay": 8800,
-		"post_delay": 2000,
+		"post_delay": 5000,
 		"next": [
 			"zibao"
 		]
@@ -164,7 +171,7 @@
 		"recognition": "DirectHit",
 		"action": "Click",
 		"target": "ocr_zibao",
-		"post_delay": 1000,
+		"post_delay": 5000,
 		"next": [
 			"zibao"
 		]
@@ -178,16 +185,15 @@
 		],
 		"post_delay": 3500,
 		"next": [
+			"[JumpBack]检查装备",
 			"saibeisi_skill1"
 		]
 	},
 	"zibao": {
-		"recognition": "TemplateMatch",
-		"roi": [773, 135, 331, 311],
-		"template": "zibao.png",
-		"threshold": 0.8,
+		"recognition": "DirectHit",
 		"action": "Click",
-		"post_delay": 1000,
+		"target": [1023, 267, 20, 19],
+		"post_delay": 8000,
 		"next": [
 			"where"
 		]
@@ -207,16 +213,16 @@
 		"roi": [852, 267, 42, 37],
 		"template": "news.png",
 		"action": "Click",
-		"target": [1035, 333, 1, 1],
-		"post_delay": 500,
+		"target": [1035, 333, 10, 10],
+		"post_delay": 3500,
 		"next": [
-			"where"
+			"互动道具1"
 		]
 	},
 	"news3": {
 		"recognition": "DirectHit",
 		"action": "Click",
-		"target": [872, 283, 1, 1],
+		"target": [872, 283, 10, 10],
 		"post_delay": 500,
 		"next": [
 			"news2_1"
@@ -225,21 +231,39 @@
 	"news2_1": {
 		"recognition": "DirectHit",
 		"action": "Click",
-		"target": [1035, 333, 1, 1],
-		"post_delay": 500,
+		"target": [1035, 333, 10, 10],
+		"post_delay": 5500,
 		"next": [
-			"where"
+			"互动道具1"
 		]
 	},
+	"互动道具1": {
+		"recognition": "DirectHit",
+		"action": "Click",
+		"target": [610, 544, 10, 12],
+		"post_delay": 5500,
+		"next": [
+			"互动道具2"
+		]
+	},
+	"互动道具2": {
+		"recognition": "DirectHit",
+		"action": "Click",
+		"target": [713, 544, 17, 16],
+		"post_delay": 7500,
+		"next": []
+	},
 	"if_point": {
+		"only_rec": true,
 		"recognition": "OCR",
-		"roi": [1145, 27, 32, 29],
+		"roi": [1146, 28, 39, 26],
 		"expected": "[5-9]\\d|[1-9]\\d{2,}",
 		"next": [
 			"if_zibao"
 		]
 	},
 	"识别时间10分": {
+		"only_rec": true,
 		"recognition": "OCR",
 		"roi": [938, 6, 28, 20],
 		"expected": ["^[1-9][0-9]+$"],
@@ -247,23 +271,35 @@
 			"点击设置"
 		]
 	},
+	"识别时间9分": {
+		"only_rec": true,
+		"recognition": "OCR",
+		"roi": [938, 6, 28, 20],
+		"expected": ["^09$"],
+		"next": [
+			"news1"
+		]
+	},
 	"if_ocr_zibao": {
 		"max_hit": 1,
 		"recognition": "TemplateMatch",
-		"roi": [773, 135, 331, 311],
-		"template": "zibao.png",
+		"roi": [948, 192, 175, 168],
+		"green_mask": true,
+		"template": "1.png",
+		"threshold": 0.6,
 		"post_delay": 2000,
 		"next": []
 	},
 	"if_zibao": {
 		"recognition": "DirectHit",
 		"action": "Click",
-		"target": "zibao",
+		"target": "if_ocr_zibao",
 		"post_delay": 15000,
 		"timeout": 90000,
 		"next": [
+			"[JumpBack]识别时间9分",
 			"识别时间10分",
-			"if_zibao"
+			"where"
 		]
 	},
 	"检查装备": {

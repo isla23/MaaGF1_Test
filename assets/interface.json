@@ -30,7 +30,7 @@
 			"entry": "where",
 			"repeatable": true,
 			"repeat_count": -1,
-			"option": ["塞北似", "房间相关"]
+			"option": ["塞北似", "房间相关", "是否开启活互动任务"]
 		},
 		{
 			"name": "人机",
@@ -51,6 +51,8 @@
 					"name": "1",
 					"pipeline_override": {
 						"where": {
+							"post_delay": 3000,
+							"rate_limit": 5000,
 							"next": [
 								"[JumpBack]if_ocr_zibao",
 								"if_point",
@@ -65,12 +67,6 @@
 								"[JumpBack]点击准备",
 								"startmatch_action"
 							]
-						},
-						"ocr_zibao": {
-							"next": [
-								"[JumpBack]检查装备",
-								"saibeisi_skill1"
-							]
 						}
 					}
 				}
@@ -80,7 +76,6 @@
 			"type": "select",
 			"description": "1",
 			"default_case": "无组队",
-			// 默认选中"无组队"
 			"cases": [
 				{
 					"name": "无组队",
@@ -105,6 +100,38 @@
 						"startmatch": {
 							"next": [
 								"队员模式"
+							]
+						}
+					}
+				}
+			]
+		},
+		"是否开启活互动任务": {
+			"type": "select",
+			"default_case": "仅语音",
+			"cases": [
+				{
+					"name": "仅语音",
+					"pipeline_override": {
+						"news2": {
+							"next": []
+						},
+						"news2_1": {
+							"next": []
+						}
+					}
+				},
+				{
+					"name": "语音+道具",
+					"pipeline_override": {}
+				},
+				{
+					"name": "无",
+					"pipeline_override": {
+						"if_zibao": {
+							"next": [
+								"识别时间10分",
+								"where"
 							]
 						}
 					}

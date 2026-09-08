@@ -24,11 +24,19 @@
 		"recognition": "DirectHit",
 		"action": "Click",
 		"target": [207, 51, 12, 3],
-		"post_delay": 25000,
+		"post_delay": 6000,
 		"timeout": 90000,
 		"next": [
-			"识别战果"
+			"识别战果",
+			"[JumpBack]无法投降自爆"
 		]
+	},
+	"无法投降自爆": {
+		"recognition": "DirectHit",
+		"action": "Click",
+		"target": "if_ocr_zibao",
+		"post_delay": 8800,
+		"next": []
 	},
 	"同意": {
 		"recognition": "DirectHit",
@@ -54,7 +62,7 @@
 		"target": [207, 51, 12, 3],
 		"post_delay": 5000,
 		"next": [
-			"where"
+			"if_zibao"
 		]
 	}
 }

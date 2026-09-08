@@ -118,11 +118,11 @@
 		"roi": [639, 615, 120, 42],
 		"expected": ["取消准备", "匹配"],
 		"timeout": 9999999,
-		"rate_limit": 3000,
+		"rate_limit": 5000,
 		"post_delay": 3000,
 		"next": [
 			"choosehero_z_1",
-			"[JumpBack]队员模式"
+			"队员模式"
 		]
 	},
 	"队长识别": {
@@ -199,9 +199,7 @@
 		]
 	},
 	"点击消息": {
-		"recognition": "OCR",
-		"roi": [974, 2, 23, 26],
-		"expected": ["7", "8", "9", "6"],
+		"recognition": "DirectHit",
 		"action": "Click",
 		"target": [1217, 254, 1, 1],
 		"post_delay": 800,
@@ -262,7 +260,7 @@
 		"roi": [511, 589, 255, 131],
 		"expected": ["继", "续", "一", "步", "回", "房", "间"],
 		"post_delay": 1000,
-		"rate_limit": 3500,
+		"rate_limit": 5500,
 		"next": [
 			"锚点_a",
 			"锚点_c"
