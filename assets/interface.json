@@ -53,6 +53,7 @@
 						"where": {
 							"post_delay": 3000,
 							"rate_limit": 5000,
+							"timeout":900000,
 							"next": [
 								"[JumpBack]if_ocr_zibao",
 								"if_point",

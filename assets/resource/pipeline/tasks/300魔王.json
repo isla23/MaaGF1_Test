@@ -109,6 +109,8 @@
 		"roi": [410, 289, 45, 30],
 		"expected": ["评分"],
 		"post_delay": 5000,
+		"rate_limit": 5000,
+		"timeout": 90000,
 		"next": [
 			"startmatch_action"
 		]
