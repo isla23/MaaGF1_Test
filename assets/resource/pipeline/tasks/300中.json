@@ -56,9 +56,8 @@
 		"action": "Click",
 		"target": [682, 655, 1, 1],
 		"post_delay": 2000,
-		"anchor": {"Q": "锚点1"},
 		"next": [
-			"startmatch",
+			"if_startmatch",
 			"定义锚点同时返回房间"
 		]
 	},
@@ -68,19 +67,16 @@
 		"target": [682, 655, 10, 10],
 		"post_delay": 1000,
 		"next": [
-			"startmatch",
+			"if_startmatch",
 			"直接返回房间"
 		]
 	},
-	"锚点1": {
-		"max_hit": 1,
-		"recognition": "DirectHit",
-		"action": "Click",
-		"target": [207, 51, 12, 3],
-		"post_delay": 2000,
-		"next": [
-			"结束任务"
-		]
+	"if_startmatch": {
+		"recognition": "OCR",
+		"roi": [334, 624, 81, 31],
+		"expected": "发送",
+		"action": "StopTask",
+		"next": []
 	},
 	"结束任务": {
 		"recognition": "DirectHit",
@@ -129,8 +125,19 @@
 		"rate_limit": 7000,
 		"post_delay": 15000,
 		"next": [
-			"ocr_zibao",
+			"if_sbs",
+			"if_ly",
 			"[JumpBack]saibeisi_"
+		]
+	},
+	"if_incombat": {
+		"recognition": "OCR",
+		"only_rec": true,
+		"roi": [1145, 7, 21, 20],
+		"expected": ["ps"],
+		"next": [
+			"if_notpoint",
+			"if_point"
 		]
 	},
 	"choosehero_z_tank": {
@@ -178,10 +185,10 @@
 	},
 	"ocr_zibao": {
 		"recognition": "TemplateMatch",
-		"roi": [888, 333, 335, 354],
+		"roi": [511, 629, 77, 77],
 		"template": [
-			"skill1.png",
-			"liya_skill1.png"
+			"skill.png",
+			"liya_skill.png"
 		],
 		"post_delay": 3500,
 		"next": [
@@ -262,6 +269,15 @@
 			"if_zibao"
 		]
 	},
+	"if_notpoint": {
+		"only_rec": true,
+		"recognition": "OCR",
+		"roi": [1146, 28, 39, 26],
+		"expected": "^([0-9]|[1-4][0-9])$",
+		"next": [
+			"[Anchor]W"
+		]
+	},
 	"识别时间10分": {
 		"only_rec": true,
 		"recognition": "OCR",
@@ -288,13 +304,63 @@
 		"template": "1.png",
 		"threshold": 0.6,
 		"post_delay": 2000,
-		"next": []
+		"next": [
+			"if_sbs",
+			"if_ly"
+		]
+	},
+	"if_sbs": {
+		"recognition": "TemplateMatch",
+		"roi": [511, 629, 77, 77],
+		"template": [
+			"skill.png"
+		],
+		"anchor": {"W": "锚点2"},
+		"post_delay": 5000,
+		"next": [
+			"[JumpBack]检查装备",
+			"where"
+		]
+	},
+	"锚点2": {
+		"recognition": "DirectHit",
+		"action": "Click",
+		"repeat": 5,
+		"target": [935, 613, 46, 41],
+		"repeat_delay": 8800,
+		"next": [
+			"zibao"
+		]
+	},
+	"if_ly": {
+		"recognition": "TemplateMatch",
+		"roi": [511, 629, 77, 77],
+		"template": [
+			"liya_skill.png"
+		],
+		"anchor": {"W": "锚点3"},
+		"post_delay": 5000,
+		"next": [
+			"[JumpBack]检查装备",
+			"where"
+		]
+	},
+	"锚点3": {
+		"recognition": "DirectHit",
+		"action": "Click",
+		"repeat": 2,
+		"target": [1144, 359, 44, 45],
+		"repeat_delay": 30000,
+		"post_delay": 5000,
+		"next": [
+			"zibao"
+		]
 	},
 	"if_zibao": {
 		"recognition": "DirectHit",
 		"action": "Click",
 		"target": "if_ocr_zibao",
-		"post_delay": 15000,
+		"post_delay": 10500,
 		"timeout": 90000,
 		"next": [
 			"[JumpBack]识别时间9分",
@@ -315,23 +381,12 @@
 			"关闭神器界面"
 		]
 	},
-	"局内点神器": {
-		"recognition": "DirectHit",
-		"action": "Click",
-		"target": [1211, 28, 15, 11],
-		"post_delay": 3500,
-		"next": [
-			"是否有空位",
-			"关闭神器界面"
-		]
-	},
 	"是否有空位": {
 		"recognition": "OCR",
 		"roi": [887, 549, 84, 40],
 		"expected": ["^(0|[1-9][0-9]{0,3})$"],
 		"action": "Click",
 		"target": [225, 638, 51, 11],
-		"post_delay": 3500,
 		"next": [
 			"专属"
 		]
