@@ -134,7 +134,7 @@
 		"recognition": "OCR",
 		"only_rec": true,
 		"roi": [1145, 7, 21, 20],
-		"expected": ["ps"],
+		"expected": "ps",
 		"next": [
 			"if_notpoint",
 			"if_point"
@@ -169,15 +169,6 @@
 		"action": "Click",
 		"target": "ocr_zibao",
 		"repeat_delay": 8800,
-		"post_delay": 5000,
-		"next": [
-			"zibao"
-		]
-	},
-	"saibeisi_skill1_5": {
-		"recognition": "DirectHit",
-		"action": "Click",
-		"target": "ocr_zibao",
 		"post_delay": 5000,
 		"next": [
 			"zibao"
@@ -258,7 +249,9 @@
 		"action": "Click",
 		"target": [713, 544, 17, 16],
 		"post_delay": 7500,
-		"next": []
+		"next": [
+			"zibao"
+		]
 	},
 	"if_point": {
 		"only_rec": true,
@@ -328,6 +321,7 @@
 		"repeat": 5,
 		"target": [935, 613, 46, 41],
 		"repeat_delay": 8800,
+		"post_delay": 2000,
 		"next": [
 			"zibao"
 		]
@@ -363,7 +357,7 @@
 		"post_delay": 10500,
 		"timeout": 90000,
 		"next": [
-			"[JumpBack]识别时间9分",
+			"识别时间9分",
 			"识别时间10分",
 			"where"
 		]

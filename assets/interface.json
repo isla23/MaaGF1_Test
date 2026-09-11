@@ -52,7 +52,7 @@
 					"pipeline_override": {
 						"where": {
 							"post_delay": 3000,
-							"rate_limit": 5000,
+							"rate_limit": 3000,
 							"timeout": 900000,
 							"next": [
 								"if_ocr_zibao",
@@ -83,12 +83,26 @@
 					"pipeline_override": {}
 				},
 				{
-					"name": "房主",
+					"name": "双人房主",
 					"description": "需要等待队员",
 					"pipeline_override": {
 						"startmatch": {
 							"next": [
-								"队长模式"
+								"队长模式",
+								"startmatch"
+							]
+						}
+					}
+				},
+				{
+					"name": "三人房主",
+					"description": "需要等待队员",
+					"pipeline_override": {
+						"startmatch": {
+							"roi": [552, 294, 62, 28],
+							"next": [
+								"队长模式",
+								"startmatch"
 							]
 						}
 					}
@@ -114,10 +128,16 @@
 					"name": "仅语音",
 					"pipeline_override": {
 						"news2": {
-							"next": []
+							"post_delay": 5000,
+							"next": [
+								"zibao"
+							]
 						},
 						"news2_1": {
-							"next": []
+							"post_delay": 5000,
+							"next": [
+								"zibao"
+							]
 						}
 					}
 				},
