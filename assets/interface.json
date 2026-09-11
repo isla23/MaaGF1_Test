@@ -30,7 +30,13 @@
 			"entry": "where",
 			"repeatable": true,
 			"repeat_count": -1,
-			"option": ["塞北似", "房间相关", "是否开启活互动任务"]
+			"option": [
+				"塞北似",
+				"房间相关",
+				"是否开启活互动任务",
+				"英雄选择",
+				"是否一直释放skill"
+			]
 		},
 		{
 			"name": "人机",
@@ -72,6 +78,58 @@
 				}
 			]
 		},
+		"英雄选择": {
+			"type": "select",
+			"default_case": "赛贝斯",
+			"cases": [
+				{
+					"name": "赛贝斯",
+					"pipeline_override": {}
+				},
+				{
+					"name": "莉亚",
+					"pipeline_override": {
+						"choosehero_z_1": {
+							"next": [
+								"choosehero_z_tank"
+							]
+						}
+					}
+				},
+				{
+					"name": "同",
+					"pipeline_override": {
+						"choosehero_z_1": {
+							"next": [
+								"choosehero_z_ap"
+							]
+						}
+					}
+				}
+			]
+		},
+		"是否一直释放skill": {
+			"type": "switch",
+			"default_case": "No",
+			"cases": [
+				{
+					"name": "Yes",
+					"pipeline_override": {
+						"if_incombat": {
+							"next": [
+								"识别时间9分",
+								"识别时间10分",
+								"[Anchor]W"
+							]
+						}
+					}
+				},
+				{
+					"name": "No",
+					"pipeline_override": {}
+				}
+			]
+		},
 		"房间相关": {
 			"type": "select",
 			"description": "1",
@@ -98,12 +156,8 @@
 					"name": "三人房主",
 					"description": "需要等待队员",
 					"pipeline_override": {
-						"startmatch": {
-							"roi": [552, 294, 62, 28],
-							"next": [
-								"队长模式",
-								"startmatch"
-							]
+						"队长模式": {
+							"roi": [543, 294, 44, 29]
 						}
 					}
 				},

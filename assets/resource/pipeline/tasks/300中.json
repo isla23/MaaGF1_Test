@@ -111,8 +111,7 @@
 		"action": "Click",
 		"post_delay": 1800,
 		"next": [
-			"saibeisi_ok",
-			"choosehero_z_tank"
+			"saibeisi_ok"
 		]
 	},
 	"saibeisi_ok": {
@@ -127,6 +126,7 @@
 		"next": [
 			"if_sbs",
 			"if_ly",
+			"if_tong",
 			"[JumpBack]saibeisi_"
 		]
 	},
@@ -138,6 +138,25 @@
 		"next": [
 			"if_notpoint",
 			"if_point"
+		]
+	},
+	"choosehero_z_ap": {
+		"recognition": "DirectHit",
+		"action": "Click",
+		"target": [1183, 249, 11, 12],
+		"post_delay": 800,
+		"next": [
+			"choosehero_z_tong"
+		]
+	},
+	"choosehero_z_tong": {
+		"recognition": "TemplateMatch",
+		"roi": [634, 110, 535, 497],
+		"template": "tong.png",
+		"action": "Click",
+		"post_delay": 800,
+		"next": [
+			"saibeisi_ok"
 		]
 	},
 	"choosehero_z_tank": {
@@ -156,7 +175,8 @@
 		"action": "Click",
 		"post_delay": 800,
 		"next": [
-			"saibeisi_ok"
+			"saibeisi_ok",
+			"choosehero_z_ap"
 		]
 	},
 	"saibeisi_": {
@@ -296,10 +316,10 @@
 		"green_mask": true,
 		"template": "1.png",
 		"threshold": 0.6,
-		"post_delay": 2000,
 		"next": [
 			"if_sbs",
-			"if_ly"
+			"if_ly",
+			"if_tong"
 		]
 	},
 	"if_sbs": {
@@ -309,7 +329,7 @@
 			"skill.png"
 		],
 		"anchor": {"W": "锚点2"},
-		"post_delay": 5000,
+		"post_delay": 4000,
 		"next": [
 			"[JumpBack]检查装备",
 			"where"
@@ -318,7 +338,7 @@
 	"锚点2": {
 		"recognition": "DirectHit",
 		"action": "Click",
-		"repeat": 5,
+		"repeat": 4,
 		"target": [935, 613, 46, 41],
 		"repeat_delay": 8800,
 		"post_delay": 2000,
@@ -333,7 +353,7 @@
 			"liya_skill.png"
 		],
 		"anchor": {"W": "锚点3"},
-		"post_delay": 5000,
+		"post_delay": 4000,
 		"next": [
 			"[JumpBack]检查装备",
 			"where"
@@ -350,11 +370,34 @@
 			"zibao"
 		]
 	},
+	"if_tong": {
+		"recognition": "TemplateMatch",
+		"roi": [511, 629, 77, 77],
+		"template": [
+			"tong_skill.png"
+		],
+		"anchor": {"W": "锚点4"},
+		"post_delay": 4000,
+		"next": [
+			"where"
+		]
+	},
+	"锚点4": {
+		"recognition": "DirectHit",
+		"action": "Click",
+		"repeat": 5,
+		"target": [936, 621, 36, 22],
+		"repeat_delay": 4000,
+		"post_delay":500,
+		"next": [
+			"zibao"
+		]
+	},
 	"if_zibao": {
 		"recognition": "DirectHit",
 		"action": "Click",
 		"target": "if_ocr_zibao",
-		"post_delay": 10500,
+		"post_delay": 9500,
 		"timeout": 90000,
 		"next": [
 			"识别时间9分",
@@ -369,7 +412,7 @@
 		"expected": ["k", "K"],
 		"action": "Click",
 		"target": [1211, 28, 15, 11],
-		"post_delay": 3500,
+		"post_delay": 3800,
 		"next": [
 			"是否有空位",
 			"关闭神器界面"
@@ -389,13 +432,14 @@
 		"recognition": "DirectHit",
 		"action": "Click",
 		"target": [1149, 68, 38, 20],
+		"post_delay": 1,
 		"next": []
 	},
 	"专属": {
 		"recognition": "DirectHit",
 		"action": "Click",
 		"target": [98, 447, 14, 11],
-		"post_delay": 3500,
+		"post_delay": 3000,
 		"next": [
 			"补齐神器1"
 		]
@@ -413,7 +457,7 @@
 		"recognition": "DirectHit",
 		"action": "Click",
 		"target": [260, 136, 17, 12],
-		"post_delay": 1500,
+		"post_delay": 1200,
 		"next": [
 			"补齐神器12"
 		]
@@ -422,7 +466,7 @@
 		"recognition": "DirectHit",
 		"action": "Click",
 		"target": [400, 128, 21, 11],
-		"post_delay": 1500,
+		"post_delay": 1200,
 		"next": [
 			"物理"
 		]
@@ -467,7 +511,7 @@
 		"recognition": "DirectHit",
 		"action": "Click",
 		"target": [820, 128, 21, 19],
-		"post_delay": 1500,
+		"post_delay": 1000,
 		"next": [
 			"保存方案"
 		]
@@ -478,7 +522,6 @@
 		"expected": ["确定", "确", "定", "通"],
 		"action": "Click",
 		"target": [244, 634, 24, 20],
-		"post_delay": 500,
 		"next": [
 			"关闭神器界面"
 		]
