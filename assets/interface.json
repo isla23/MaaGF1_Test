@@ -161,10 +161,14 @@
 					"name": "三人房主",
 					"description": "需要等待队员",
 					"pipeline_override": {
+						"startmatch": {
+							"next": [
+								"队长模式",
+								"startmatch"
+							]
+						},
 						"队长模式": {
-							"roi": [543, 294, 44, 29],
-							"post_delay": 6000,
-							"rate_limit": 6000
+							"roi": [543, 292, 44, 26]
 						}
 					}
 				},

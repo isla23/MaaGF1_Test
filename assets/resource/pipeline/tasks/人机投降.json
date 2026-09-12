@@ -6,7 +6,20 @@
 		"post_delay": 4000,
 		"next": [
 			"请求投降",
+			"投降面板",
 			"时间未到关闭设置"
+		]
+	},
+	"投降面板": {
+		"recognition": "OCR",
+		"roi": [394, 117, 34, 26],
+		"expected": ["投降"],
+		"action": "Click",
+		"target": [410, 178, 39, 13],
+		"post_delay": 6000,
+		"next": [
+			"识别战果",
+			"[JumpBack]无法投降自爆"
 		]
 	},
 	"请求投降": {
