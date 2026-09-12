@@ -121,7 +121,6 @@
 		"recognition": "OCR",
 		"roi": [639, 615, 120, 42],
 		"expected": ["取消准备", "匹配", "取消", "准备"],
-		"timeout": 9999999,
 		"rate_limit": 4000,
 		"post_delay": 4000,
 		"next": [

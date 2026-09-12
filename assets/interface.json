@@ -162,7 +162,9 @@
 					"description": "需要等待队员",
 					"pipeline_override": {
 						"队长模式": {
-							"roi": [543, 294, 44, 29]
+							"roi": [543, 294, 44, 29],
+							"post_delay": 6000,
+							"rate_limit": 6000
 						}
 					}
 				},
@@ -172,7 +174,8 @@
 					"pipeline_override": {
 						"startmatch": {
 							"next": [
-								"队员模式"
+								"队员模式",
+								"choosehero_z_1"
 							]
 						}
 					}

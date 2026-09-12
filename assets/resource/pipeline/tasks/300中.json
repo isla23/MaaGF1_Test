@@ -385,8 +385,8 @@
 		"action": "Click",
 		"repeat": 5,
 		"target": [936, 621, 36, 22],
-		"repeat_delay": 4000,
-		"post_delay": 500,
+		"repeat_delay": 5000,
+		"post_delay": 1000,
 		"next": [
 			"zibao"
 		]
