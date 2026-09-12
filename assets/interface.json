@@ -66,13 +66,6 @@
 								"startmatch",
 								"识别战果"
 							]
-						},
-						"startmatch_action": {
-							"next": [
-								"choosehero_z_1",
-								"[JumpBack]点击准备",
-								"startmatch_action"
-							]
 						}
 					}
 				}
@@ -93,6 +86,12 @@
 							"next": [
 								"choosehero_z_tank"
 							]
+						},
+						"saibeisi_ok": {
+							"next": [
+								"if_ly",
+								"[JumpBack]saibeisi_"
+							]
 						}
 					}
 				},
@@ -102,6 +101,12 @@
 						"choosehero_z_1": {
 							"next": [
 								"choosehero_z_ap"
+							]
+						},
+						"saibeisi_ok": {
+							"next": [
+								"if_tong",
+								"[JumpBack]saibeisi_"
 							]
 						}
 					}

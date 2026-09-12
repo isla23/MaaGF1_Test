@@ -86,10 +86,10 @@
 	"choosehero_z_1": {
 		"recognition": "OCR",
 		"roi": [1011, 69, 59, 29],
-		"expected": "英雄",
+		"expected": ["英雄", "英", "雄"],
 		"action": "Click",
-		"target": [957, 105, 1, 1],
-		"pre_delay": 500,
+		"target": [957, 105, 2, 2],
+		"pre_delay": 800,
 		"post_delay": 800,
 		"next": [
 			"choosehero_z_adc"
@@ -125,8 +125,6 @@
 		"post_delay": 15000,
 		"next": [
 			"if_sbs",
-			"if_ly",
-			"if_tong",
 			"[JumpBack]saibeisi_"
 		]
 	},
@@ -162,7 +160,7 @@
 	"choosehero_z_tank": {
 		"recognition": "DirectHit",
 		"action": "Click",
-		"target": [1187, 489, 1, 1],
+		"target": [1187, 489, 2, 2],
 		"post_delay": 800,
 		"next": [
 			"choosehero_z_liya"

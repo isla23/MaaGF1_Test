@@ -139,7 +139,7 @@
 		"rate_limit": 5000,
 		"post_delay": 5000,
 		"next": [
-			"choosehero",
+			"choosehero_z_1",
 			"[JumpBack]点击准备",
 			"startmatch_action"
 		]
