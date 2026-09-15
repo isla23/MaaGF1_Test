@@ -101,7 +101,8 @@
 		"target": [1188, 175, 10, 12],
 		"post_delay": 800,
 		"next": [
-			"choosehero_z_saibeisi"
+			"choosehero_z_saibeisi",
+			"choosehero_z_tank"
 		]
 	},
 	"choosehero_z_saibeisi": {
@@ -111,7 +112,8 @@
 		"action": "Click",
 		"post_delay": 1800,
 		"next": [
-			"saibeisi_ok"
+			"saibeisi_ok",
+			"choosehero_z_tank"
 		]
 	},
 	"saibeisi_ok": {
@@ -173,7 +175,8 @@
 		"action": "Click",
 		"post_delay": 800,
 		"next": [
-			"saibeisi_ok"
+			"saibeisi_ok",
+			"choosehero_z_ap"
 		]
 	},
 	"saibeisi_": {

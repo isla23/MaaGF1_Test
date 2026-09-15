@@ -35,7 +35,8 @@
 				"房间相关",
 				"是否开启活互动任务",
 				"英雄选择",
-				"是否一直释放skill"
+				"是否一直释放skill",
+				"是否一直自爆"
 			]
 		},
 		{
@@ -73,10 +74,10 @@
 		},
 		"英雄选择": {
 			"type": "select",
-			"default_case": "赛贝斯",
+			"default_case": "赛贝斯/默认",
 			"cases": [
 				{
-					"name": "赛贝斯",
+					"name": "赛贝斯/默认",
 					"pipeline_override": {}
 				},
 				{
@@ -224,6 +225,41 @@
 				}
 			]
 		},
+		"是否一直自爆": {
+			"type": "switch",
+			"default_case": "No",
+			"cases": [
+				{
+					"name": "Yes",
+					"pipeline_override": {
+						"saibeisi_ok": {
+							"next": [
+								"if_ocr_zibao"
+							]
+						},
+						"if_ocr_zibao": {
+							"next": [
+								"where"
+							]
+						},
+						"if_incombat": {
+							"next": [
+								"if_zibao"
+							]
+						},
+						"if_zibao": {
+							"next": [
+								"where"
+							]
+						}
+					}
+				},
+				{
+					"name": "No",
+					"pipeline_override": {}
+				}
+			]
+		},
 		"人机": {
 			"cases": [
 				{
@@ -237,6 +273,23 @@
 						"move": {
 							"next": [
 								"点击设置"
+							]
+						},
+						"关闭设置": {
+							"next": [
+								"where"
+							]
+						},
+						"时间未到关闭设置": {
+							"next": [
+								"where"
+							]
+						},
+						"startmatch_action": {
+							"next": [
+								"choosehero",
+								"[JumpBack]点击准备",
+								"startmatch_action"
 							]
 						}
 					}
