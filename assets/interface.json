@@ -232,9 +232,21 @@
 				{
 					"name": "Yes",
 					"pipeline_override": {
+						"choosehero_z_1": {
+							"recognition": "OCR",
+							"roi": [1011, 69, 59, 29],
+							"expected": ["英雄", "英", "雄"],
+							"action": "DoNothing",
+							"pre_delay": 800,
+							"post_delay": 800,
+							"next": [
+								"choosehero_noaim1"
+							]
+						},
 						"saibeisi_ok": {
 							"next": [
-								"if_ocr_zibao"
+								"if_noaim",
+								"[JumpBack]saibeisi_"
 							]
 						},
 						"if_ocr_zibao": {

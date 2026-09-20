@@ -95,6 +95,25 @@
 			"choosehero_z_adc"
 		]
 	},
+	"choosehero_noaim1": {
+		"recognition": "DirectHit",
+		"action": "Click",
+		"target": [1016, 138, 39, 37],
+		"post_delay": 800,
+		"next": [
+			"saibeisi_ok",
+			"choosehero_noaim2"
+		]
+	},
+	"choosehero_noaim2": {
+		"recognition": "DirectHit",
+		"action": "Click",
+		"target": [1108, 142, 30, 32],
+		"post_delay": 800,
+		"next": [
+			"saibeisi_ok"
+		]
+	},
 	"choosehero_z_adc": {
 		"recognition": "DirectHit",
 		"action": "Click",
@@ -319,7 +338,19 @@
 		"next": [
 			"if_sbs",
 			"if_ly",
-			"if_tong"
+			"if_tong",
+			"if_noaim"
+		]
+	},
+	"if_noaim": {
+		"recognition": "TemplateMatch",
+		"roi": [392, 586, 218, 134],
+		"template": [
+			"skill_noaim.png"
+		],
+		"post_delay": 4000,
+		"next": [
+			"where"
 		]
 	},
 	"if_sbs": {
